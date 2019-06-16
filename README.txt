@@ -22,7 +22,7 @@ sudo mkdir -p /opt/homeassistant
 
 #############################
 # Initialize via "docker run"
-sudo docker run --init -d --name="home-assistant" -v /opt/homeassistant/:/config -v /etc/localtime:/etc/localtime:ro -p 8123:8123 homeassistant/raspberrypi3-homeassistant
+sudo docker run --init -d --name="home-assistant" -v /opt/homeassistant/:/config -v /etc/localtime:/etc/localtime:ro -p 8123:8123 homeassistant/raspberrypi3-homeassistant:0.94.3
 
 # Verify
 sudo docker ps
