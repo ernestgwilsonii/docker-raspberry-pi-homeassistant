@@ -8,7 +8,7 @@
 
 ###############################################################################
 # Download - https://hub.docker.com/r/homeassistant/raspberrypi3-homeassistant/tags
-sudo docker pull homeassistant/raspberrypi3-homeassistant:0.89.1
+sudo docker pull homeassistant/raspberrypi3-homeassistant:0.94.3
 sudo docker images
 ###############################################################################
 
