@@ -3,7 +3,6 @@
 # Home Assistant Docker for Raspberry Pi # 
 ##########################################
 
-```
 # Use the latest "Buster" Raspbian Lite OS image on the Raspberry Pi 3B+
 # REF: https://www.raspberrypi.org/downloads/raspbian/
 # Then setup networking (WiFi or Ethernet) and enable SSH (as typical on any new Pi)
