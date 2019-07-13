@@ -38,7 +38,7 @@ reboot
 #rpi-update
 
 # Install some standard packages
-sudo apt-get -y install apparmor-utils avahi-daemon dbus gcc git htop jq libffi-dev libssl-dev mc apparmor-utils portaudio19-dev python-dev
+sudo apt-get -y install apparmor-utils avahi-daemon dbus gcc git htop jq libffi-dev libssl-dev mc network-manager  portaudio19-dev python-dev
 # Note: If you are using Debian 10 "Buster" or newer, AppArmor is enabled by default
 
 # Install Docker on Buster
