@@ -68,6 +68,11 @@ sudo docker swarm init --advertise-addr 192.168.1.13
 sudo bash
 mkdir -p /opt/hassio
 
+# Create a symlink so hassio documentation maps up to /usr/share/hassio
+mkdir -p /usr/share/hassio
+#ln -s /opt/hassio /usr/share/hassio
+ln -s /opt/hassio /usr/share
+
 # Install Home Assistant https://www.home-assistant.io
 # Use the Hass.io system https://www.home-assistant.io/hassio/ so you get add-ons!
 # Docker container "hassio" installer for a generic Linux system!
