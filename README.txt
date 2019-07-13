@@ -73,8 +73,16 @@ mkdir -p /opt/hassio
 # Docker container "hassio" installer for a generic Linux system!
 # https://github.com/home-assistant/hassio-installer
 curl -sL https://raw.githubusercontent.com/home-assistant/hassio-installer/master/hassio_install.sh | bash -s -- -d /opt/hassio -m raspberrypi3
+
+# Verify that the hassio supervisor container started (it will download the homeassistant container)
 docker ps
 ls -alF /opt/hassio
+
+# Verify that the hassio supervisor (hassio docker supervisor) is running
+systemctl status hassio-supervisor.service
+cat /etc/systemd/system/hassio-apparmor.service
+#systemctl stop hassio-supervisor.service
+#systemctl disable hassio-supervisor.service
 
 # WARNING: Do not delete the hassio related containers by mistake when using: sudo docker system prune -af
 # Do create a filter to protect from accidental deletion:
