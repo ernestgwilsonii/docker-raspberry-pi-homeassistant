@@ -96,4 +96,70 @@ sudo echo '{"pruneFilters":["label!=homeassistant","label!=hassio_supervisor","l
 
 # Open a browser and setup Home Assistant
 # http://YourPiIpAdress:8123
+
+
+####################
+# Hass.io Add-ons! #
+####################
+
+# Create basic setup for MQTT
+mkdir -p /usr/share/hassio/share/mosquitto
+echo "acl_file /share/mosquitto/accesscontrollist" > /usr/share/hassio/share/mosquitto/acl.conf
+echo "user hassio" > /usr/share/hassio/share/mosquitto/accesscontrollist
+echo "topic readwrite #" >> /usr/share/hassio/share/mosquitto/accesscontrollist
+echo "" >> /usr/share/hassio/share/mosquitto/accesscontrollist
+echo "user nodered" >> /usr/share/hassio/share/mosquitto/accesscontrollist
+echo "topic readwrite #" >> /usr/share/hassio/share/mosquitto/accesscontrollist
+cat /usr/share/hassio/share/mosquitto/accesscontrollist
+
+# Mosquitto MQTT broker
+# REF: https://www.home-assistant.io/addons/mosquitto/
+# Config (for MQTT in the Hass.io add-on web interface)
+{
+  "logins": [
+    {
+      "username": "hassio",
+      "password": "ThePasswordGoesHere"
+    },
+    {
+      "username": "nodered",
+      "password": "ThePasswordGoesHere"
+    }
+  ],
+  "anonymous": false,
+  "customize": {
+    "active": true,
+    "folder": "mosquitto"
+  },
+  "certfile": "fullchain.pem",
+  "keyfile": "privkey.pem"
+}
+
+# Node-RED
+# REF: https://github.com/hassio-addons/addon-node-red
+# Config (for Node-RED in the Hass.io add-on web interface)
+{
+  "credential_secret": "ThePasswordGoesHere",
+  "dark_mode": false,
+  "http_node": {
+    "username": "nodered",
+    "password": "ThePasswordGoesHere"
+  },
+  "http_static": {
+    "username": "nodered",
+    "password": "ThePasswordGoesHere"
+  },
+  "ssl": false,
+  "certfile": "fullchain.pem",
+  "keyfile": "privkey.pem",
+  "require_ssl": true,
+  "system_packages": [],
+  "npm_packages": [
+    "node-red-admin",
+    "node-red-contrib-alexa-local",
+    "node-red-contrib-slack"
+  ],
+  "init_commands": []
+}
+
 ###############################################################################
