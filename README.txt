@@ -64,19 +64,17 @@ pip install --upgrade docker-compose
 # Initialize Docker Swarm mode
 sudo docker swarm init --advertise-addr 192.168.1.13
 
-
-#sudo docker run --init -d --name="home-assistant" -v /opt/homeassistant/:/config -v /etc/localtime:/etc/localtime:ro -p 8123:8123 homeassistant/raspberrypi3-homeassistant:0.94.3
-
 # Create a place to save local data
 sudo bash
-mkdir -p /opt/homeassistant
+mkdir -p /opt/hassio
 
 # Install Home Assistant https://www.home-assistant.io
 # Use the Hass.io system https://www.home-assistant.io/hassio/ so you get add-ons!
 # Docker container "hassio" installer for a generic Linux system!
 # https://github.com/home-assistant/hassio-installer
-curl -sL https://raw.githubusercontent.com/home-assistant/hassio-installer/master/hassio_install.sh | bash -s -- -d /opt/homeassistant -m raspberrypi3
+curl -sL https://raw.githubusercontent.com/home-assistant/hassio-installer/master/hassio_install.sh | bash -s -- -d /opt/hassio -m raspberrypi3
 docker ps
+ls -alF /opt/hassio
 
 # WARNING: Do not delete the hassio related containers by mistake when using: sudo docker system prune -af
 # Do create a filter to protect from accidental deletion:
@@ -85,59 +83,4 @@ sudo echo '{"pruneFilters":["label!=homeassistant","label!=hassio_supervisor","l
 
 # Open a browser and setup Home Assistant
 # http://YourPiIpAdress:8123
-
-
-# STOP HERE #
-
-
-
-#
-# WARNING: BELOW THIS POINT IS OLD STYLE AND NOT WORKING!
-#
-
-# REF: https://www.home-assistant.io/
-# REF: https://www.home-assistant.io/docs/installation/docker/
-
-###############################################################################
-# Download - https://hub.docker.com/r/homeassistant/raspberrypi3-homeassistant/tags
-sudo docker pull homeassistant/raspberrypi3-homeassistant:0.94.3
-sudo docker images
-###############################################################################
-
-
-###############################################################################
-# First time setup #
-####################
-# Create bind mounted directory
-sudo mkdir -p /opt/homeassistant
-
-
-#############################
-# Initialize via "docker run"
-sudo docker run --init -d --name="home-assistant" -v /opt/homeassistant/:/config -v /etc/localtime:/etc/localtime:ro -p 8123:8123 homeassistant/raspberrypi3-homeassistant:0.94.3
-
-# Verify
-sudo docker ps
-sudo ls -alF
-
-# Login and setup (create) your local Name, Username and Password
-# http://IPAddress:8123
-
-# Stop
-sudo docker stop home-assistant
-#sudo docker start home-assistant
-
-
-##########
-# Deploy #
-##########
-# Deploy the stack into a Docker Swarm
-sudo docker stack deploy -c docker-compose.yml home-assistant
-# sudo docker stack rm home-assistant
-
-# Verify
-sudo docker service ls | grep home-assistant
-sudo docker service logs -f home-assistant
-
-# http://IPAddress:8123
 ###############################################################################
