@@ -157,6 +157,7 @@ cat /usr/share/hassio/share/mosquitto/accesscontrollist
   "npm_packages": [
     "node-red-admin",
     "node-red-contrib-alexa-local",
+    "node-red-contrib-function-npm",
     "node-red-contrib-slack"
   ],
   "init_commands": []
