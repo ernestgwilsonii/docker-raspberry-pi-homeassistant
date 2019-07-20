@@ -97,7 +97,7 @@ sudo echo '{"pruneFilters":["label!=homeassistant","label!=hassio_supervisor","l
 # Buster updates on Raspberry Pi
 apt-get --allow-releaseinfo-change update
 apt-get update
-apt-get upgrade
+apt-get upgrade -y
 
 # Open a browser and setup Home Assistant
 # http://YourPiIpAdress:8123
