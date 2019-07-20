@@ -94,6 +94,11 @@ cat /etc/systemd/system/hassio-apparmor.service
 sudo mkdir -p ~/.docker
 sudo echo '{"pruneFilters":["label!=homeassistant","label!=hassio_supervisor","label!=addon*"]}' > ~/.docker/config.json
 
+# Buster updates on Raspberry Pi
+apt-get --allow-releaseinfo-change update
+apt-get update
+apt-get upgrade
+
 # Open a browser and setup Home Assistant
 # http://YourPiIpAdress:8123
 
